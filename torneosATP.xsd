@@ -1,5 +1,14 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+
+<xs:complexType name="puntosATP">
+	<xs:sequence>
+		<xs:element type="ronda" minOccurs="3" maxOccurs="6"/>
+	</xs:sequence>
+	<xs:attribute name="puntos" type="xs:integer"/>
+
+</xs:complexType>
+
 <xs:simpleType name="ronda">
 	<xs:restriction base="xs:string">
 		<xs:enumeration value="2da ronda"/>
@@ -10,3 +19,120 @@
 		<xs:enumeration value="ganador"/>
 		<xs:attribute name="puntos" type="xs:integer" use="required"/>
 	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:simpleType name="jugador">
+	<xs:restriction>
+		<xs:attribute name="nombre" type="xs:string" use="required"/>
+		<xs:attribute name="rankingTorneo" type="xs:integer" use="required"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="cruce">
+	<xs:sequence>
+		<xs:element type="jugador" minOccurs="2" maxOccurs="2"/>
+	</xs:sequence>
+	<xs:attribute name="numero" type="xs:integer" use="optional"/>
+</xs:complexType>
+
+<xs:complexType name="cuadro">
+	<xs:sequence>
+		<xs:element type="cruce" minOccurs="1" maxOccurs="unbounded"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="tipo">
+	<xs:restriction>
+		<xs:enumeration value="individual masculino"/>
+		<xs:enumeration value="individual femenino"/>
+		<xs:enumeration value="dobles masculino"/>
+		<xs:enumeration value="dobles femenino"/>
+		<xs:enumeration value="dobles mixtos"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="jugadores">
+		<xs:sequence>
+		<xs:element type="lado1"  minOccurs="1" maxOccurs="1"/>
+		<xs:element type="lado2" minOccurs="1" maxOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="lado1">
+	<xs:sequence>
+		<xs:element type="jugador"  minOccurs="1" maxOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="lado2">
+	<xs:sequence>
+		<xs:element type="jugador"  minOccurs="1" maxOccurs="1"/>
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name="partidos">
+
+</xs:complexType> 
+
+<xs:complexType name="partido">
+	<xs:sequence>
+		<xs:element  type="tipo" />
+		<xs:element  type="jugadores" />
+		<xs:element type="resultado" />
+	</xs:sequence>
+	<xs:attribute  name="estado" use="optional" type ="xs:string"/> 
+	
+</xs:complexType>
+
+
+<xs:complexType name="resultado">
+	<xs:sequence>
+		<xs:element type="set" minOccurs="1" maxOccurs="unbounded" />
+	</xs:sequence>
+</xs:complexType>
+
+
+<xs:complexType name="set">
+		<xs:sequence>
+			<xs:element type="juegos" minOccurs="1" />
+		</xs:sequence>
+		<xs:attribute  name="numero" type="xs:integer" use="required" />
+</xs:complexType>
+
+<xs:complexType name="juegos">
+	<xs:sequence>
+		<xs:element type="puntosJuego" minOccurs="0" maxOccurs="1"/>
+	</xs:sequence>
+	<xs:attribute  name="lado1" type="xs:integer" use="required"   />
+	<xs:attribute  name="lado2" type="xs:integer" use="required"   />
+
+</xs:complexType>
+
+<xs:simpleType name="puntosJuego">
+		<xs:restriction>
+			<xs:attribute name="lado1" type="xs:integer" use="required"/>
+			<xs:attribute name="lado2" type="xs:integer" use="required"/>
+		</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="torneo">
+	<xs:sequence>
+		<xs:element name="nombre" type="xs:string"/>
+		<xs:element name="fechaIni" type="xs:date"/>
+		<xs:element name="fechaFin" type="xs:date"/>
+		<xs:element name="puntosATP" type="puntosATP"/>
+		<xs:element name="cuadro" type="cuadro"/>
+		<xs:element name="partidos" type="partidos"/>
+	</xs:sequence>
+
+</xs:complexType>
+
+<xs:schema>
+	<xs:complexType>
+		<xs:sequence>
+			<xs:element type="torneo" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,12 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<xs:simpleType name="ronda">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="2da ronda"/>
+		<xs:enumeration value="3ra ronda"/>
+		<xs:enumeration value="cuartos"/>
+		<xs:enumeration value="semis"/>
+		<xs:enumeration value="finalista"/>
+		<xs:enumeration value="ganador"/>
+		<xs:attribute name="puntos" type="xs:integer" use="required"/>
+	</xs:restriction>

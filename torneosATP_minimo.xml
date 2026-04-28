@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<torneosATP>
+	<torneo>
+		<nombre> Hola</nombre>
+		<fechaIni>2026-10-06</fechaIni>
+		<fechaFin>2026-11-06</fechaFin>
+		<puntosATP>
+		
+			<ronda>
+			
+			</ronda>
+			<ronda>
+			
+			</ronda>
+			<ronda>
+			
+			</ronda>
+			
+		</puntosATP>
+
+	</torneo>
+</torneosATP>

@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<torneosATP>
+<torneosATP xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:noNamespaceSchemaLocation="torneosATP.xsd">
 	<torneo>
 		<nombre> Hola</nombre>
 		<fechaIni>2026-10-06</fechaIni>
 		<fechaFin>2026-11-06</fechaFin>
 		<puntosATP>
-		
-			<ronda puntos=250>semis</ronda>
-			<ronda puntos=500>finalista</ronda>
-			<ronda puntos=1000>ganador</ronda>
-			
+			<ronda puntos="250">semis</ronda>
+			<ronda puntos="500">finalista</ronda>
+			<ronda puntos="1000">ganador</ronda>
 		</puntosATP>
 		<cuadro>
 			<cruce>
@@ -26,8 +24,8 @@
 					<lado2><jugador nombre="Alvaro" rankingTorneo="12"/></lado2>
 				</jugadores>
 				<resultado>
-					<set numero=1>
-						<juegos lado1=4 lado2=2>
+					<set numero="1">
+						<juegos lado1="4" lado2="2"/>
 					</set>
 				</resultado>
 			</partido>

@@ -1,15 +1,20 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+	<xs:complexType name="torneosATP">
+		<xs:sequence>
+			<xs:element type="torneo" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
 
 <xs:complexType name="puntosATP">
 	<xs:sequence>
-		<xs:element type="ronda" minOccurs="3" maxOccurs="6"/>
+		<xs:element name="ronda" type="ronda" minOccurs="3" maxOccurs="6"/>
 	</xs:sequence>
 	<xs:attribute name="puntos" type="xs:integer"/>
-
 </xs:complexType>
 
-<xs:simpleType name="ronda">
+<xs:complexType name="ronda">
 	<xs:restriction base="xs:string">
 		<xs:enumeration value="2da ronda"/>
 		<xs:enumeration value="3ra ronda"/>
@@ -17,28 +22,26 @@
 		<xs:enumeration value="semis"/>
 		<xs:enumeration value="finalista"/>
 		<xs:enumeration value="ganador"/>
-		<xs:attribute name="puntos" type="xs:integer" use="required"/>
 	</xs:restriction>
-</xs:simpleType>
+		<xs:attribute name="puntos" type="xs:integer" use="required"/>
+</xs:complexType>
 
 
-<xs:simpleType name="jugador">
-	<xs:restriction>
+<xs:complexType name="jugador">
 		<xs:attribute name="nombre" type="xs:string" use="required"/>
 		<xs:attribute name="rankingTorneo" type="xs:integer" use="required"/>
-	</xs:restriction>
-</xs:simpleType>
+</xs:complexType>
 
 <xs:complexType name="cruce">
 	<xs:sequence>
-		<xs:element type="jugador" minOccurs="2" maxOccurs="2"/>
+		<xs:element name="jugador" type="jugador" minOccurs="2" maxOccurs="2"/>
 	</xs:sequence>
 	<xs:attribute name="numero" type="xs:integer" use="optional"/>
 </xs:complexType>
 
 <xs:complexType name="cuadro">
 	<xs:sequence>
-		<xs:element type="cruce" minOccurs="1" maxOccurs="unbounded"/>
+		<xs:element name="cruce" type="cruce" minOccurs="1" maxOccurs="unbounded"/>
 	</xs:sequence>
 </xs:complexType>
 
@@ -54,33 +57,35 @@
 
 <xs:complexType name="jugadores">
 		<xs:sequence>
-		<xs:element type="lado1"  minOccurs="1" maxOccurs="1"/>
-		<xs:element type="lado2" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="lado1" type="lado1"  minOccurs="1" maxOccurs="1"/>
+		<xs:element name="lado2" type="lado2" minOccurs="1" maxOccurs="1"/>
 	</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="lado1">
 	<xs:sequence>
-		<xs:element type="jugador"  minOccurs="1" maxOccurs="1"/>
+		<xs:element name="jugador" type="jugador"  minOccurs="1" maxOccurs="1"/>
 	</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="lado2">
 	<xs:sequence>
-		<xs:element type="jugador"  minOccurs="1" maxOccurs="1"/>
+		<xs:element name="jugador" type="jugador"  minOccurs="1" maxOccurs="1"/>
 	</xs:sequence>
 </xs:complexType>
 
 
 <xs:complexType name="partidos">
-
+	<xs:sequence>
+		<xs:element name="partido" type="partido" minOccurs="1" maxOccurs="unbounded"/>
+	</xs:sequence>
 </xs:complexType> 
 
 <xs:complexType name="partido">
 	<xs:sequence>
-		<xs:element  type="tipo" />
-		<xs:element  type="jugadores" />
-		<xs:element type="resultado" />
+		<xs:element  name="tipo" type="tipo" />
+		<xs:element  name="jugadores" type="jugadores" />
+		<xs:element  name="resultado" type="resultado" />
 	</xs:sequence>
 	<xs:attribute  name="estado" use="optional" type ="xs:string"/> 
 	
@@ -89,33 +94,31 @@
 
 <xs:complexType name="resultado">
 	<xs:sequence>
-		<xs:element type="set" minOccurs="1" maxOccurs="unbounded" />
+		<xs:element name="set" type="set" minOccurs="1" maxOccurs="unbounded" />
 	</xs:sequence>
 </xs:complexType>
 
 
 <xs:complexType name="set">
 		<xs:sequence>
-			<xs:element type="juegos" minOccurs="1" />
+			<xs:element name="juegos" type="juegos" minOccurs="1" />
 		</xs:sequence>
 		<xs:attribute  name="numero" type="xs:integer" use="required" />
 </xs:complexType>
 
 <xs:complexType name="juegos">
 	<xs:sequence>
-		<xs:element type="puntosJuego" minOccurs="0" maxOccurs="1"/>
+		<xs:element name="puntosJuego" type="puntosJuego" minOccurs="0" maxOccurs="1"/>
 	</xs:sequence>
 	<xs:attribute  name="lado1" type="xs:integer" use="required"   />
 	<xs:attribute  name="lado2" type="xs:integer" use="required"   />
 
 </xs:complexType>
 
-<xs:simpleType name="puntosJuego">
-		<xs:restriction>
+<xs:complexType name="puntosJuego">
 			<xs:attribute name="lado1" type="xs:integer" use="required"/>
 			<xs:attribute name="lado2" type="xs:integer" use="required"/>
-		</xs:restriction>
-</xs:simpleType>
+</xs:complexType>
 
 <xs:complexType name="torneo">
 	<xs:sequence>
@@ -129,10 +132,6 @@
 
 </xs:complexType>
 
-<xs:schema>
-	<xs:complexType>
-		<xs:sequence>
-			<xs:element type="torneo" minOccurs="1" maxOccurs="unbounded"/>
-		</xs:sequence>
-	</xs:complexType>
+
+
 </xs:schema>
